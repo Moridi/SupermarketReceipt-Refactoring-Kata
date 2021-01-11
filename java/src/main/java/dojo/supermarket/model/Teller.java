@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// @Assign: Zhivar
 public class Teller {
 
+    // TODO: Check its usage. In case, make it singleton
     private final SupermarketCatalog catalog;
     private Map<Product, Offer> offers = new HashMap<>();
 
@@ -17,6 +19,7 @@ public class Teller {
         this.offers.put(product, new Offer(offerType, product, argument));
     }
 
+    // TODO: Feature envy.
     public Receipt checksOutArticlesFrom(ShoppingCart theCart) {
         Receipt receipt = new Receipt();
         List<ProductQuantity> productQuantities = theCart.getItems();

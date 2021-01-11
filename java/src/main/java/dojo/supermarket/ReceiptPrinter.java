@@ -16,6 +16,8 @@ public class ReceiptPrinter {
         this.columns = columns;
     }
 
+
+    // @TODO: Long method
     public String printReceipt(Receipt receipt) {
         StringBuilder result = new StringBuilder();
         for (ReceiptItem item : receipt.getItems()) {

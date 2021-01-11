@@ -7,7 +7,11 @@ import java.util.Map;
 
 public class ShoppingCart {
 
+    // TODO: Redundancy
+    // TODO: Remove it.
     private final List<ProductQuantity> items = new ArrayList<>();
+    // TODO: Make it primitive type
+    // TODO: Move it to a new class
     Map<Product, Double> productQuantities = new HashMap<>();
 
 
@@ -33,7 +37,12 @@ public class ShoppingCart {
         }
     }
 
+    // TODO: Long method.
+    // TODO: Check the discount priorities.
+    // TODO: Encapsulation
+//    void handleOffers(Map<Product, Offer> offers) {
     void handleOffers(Receipt receipt, Map<Product, Offer> offers, SupermarketCatalog catalog) {
+
         for (Product p: productQuantities().keySet()) {
             double quantity = productQuantities.get(p);
             if (offers.containsKey(p)) {
@@ -59,7 +68,12 @@ public class ShoppingCart {
                 } if (offer.offerType == SpecialOfferType.FiveForAmount) {
                     x = 5;
                 }
+
+
                 int numberOfXs = quantityAsInt / x;
+
+
+
                 if (offer.offerType == SpecialOfferType.ThreeForTwo && quantityAsInt > 2) {
                     double discountAmount = quantity * unitPrice - ((numberOfXs * 2 * unitPrice) + quantityAsInt % 3 * unitPrice);
                     discount = new Discount(p, "3 for 2", -discountAmount);

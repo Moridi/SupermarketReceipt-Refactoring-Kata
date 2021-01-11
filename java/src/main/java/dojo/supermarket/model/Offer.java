@@ -3,6 +3,7 @@ package dojo.supermarket.model;
 public class Offer {
     SpecialOfferType offerType;
     private final Product product;
+    // TODO: Encapsulation
     double argument;
 
     public Offer(SpecialOfferType offerType, Product product, double argument) {
