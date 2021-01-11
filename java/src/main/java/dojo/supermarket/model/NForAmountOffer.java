@@ -1,9 +1,9 @@
 package dojo.supermarket.model;
 
-public class nForAmountOffer extends Offer {
+public class NForAmountOffer extends Offer {
     private int offerChunkSize;
 
-    public nForAmountOffer(SpecialOfferType offerType, Product product, double argument, int offerChunkSize) {
+    public NForAmountOffer(SpecialOfferType offerType, Product product, double argument, int offerChunkSize) {
         super(offerType, product, argument);
         this.offerChunkSize = offerChunkSize;
     }
