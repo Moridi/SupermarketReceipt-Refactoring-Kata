@@ -18,8 +18,8 @@ public class Teller {
 
     // TODO: Move the offer creation to OfferHandler
     public void addSpecialOffer(SpecialOfferType offerType, Product product, double argument) {
-        this.offers.put(product, new Offer(offerType, product, argument));
-//        OfferHandler.addOffer(offerType, product, argument)
+//        this.offers.put(product, new Offer(offerType, product, argument));
+        offerHandler.addOffer(offerType, product, argument);
     }
 
     // TODO: Feature envy.
@@ -27,9 +27,13 @@ public class Teller {
         Receipt receipt = new Receipt();
         receipt.fillOriginalItems(theCart, this.catalog);
 
-//        OfferHandler.applyOffers(theCart, this.catalog);
+        List<Discount> discounts = offerHandler.applyOffers(theCart, this.catalog);
+        for(Discount discount: discounts){
+            if (discount != null)
+                receipt.addDiscount(discount);
+        }
 
-        theCart.handleOffers(receipt, this.offers, this.catalog);
+//        theCart.handleOffers(receipt, this.offers, this.catalog);
 
         return receipt;
     }

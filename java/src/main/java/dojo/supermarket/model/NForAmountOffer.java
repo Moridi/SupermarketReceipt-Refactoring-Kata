@@ -16,7 +16,7 @@ public class NForAmountOffer extends Offer {
             double unitPrice = catalog.getUnitPrice(this.getProduct());
             double originalPrice = unitPrice * productQuantity;
             double extraNoDiscountPrice = quantityAsInt % this.offerChunkSize * unitPrice;
-            double completeChunksDiscountedPrice = this.argument * quantityAsInt / this.offerChunkSize;
+            double completeChunksDiscountedPrice = this.argument * Math.floor(quantityAsInt / this.offerChunkSize);
 
             double discountTotal = originalPrice - (completeChunksDiscountedPrice + extraNoDiscountPrice);
             String description = this.offerChunkSize + " for " + this.argument;

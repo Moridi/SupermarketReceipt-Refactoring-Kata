@@ -14,16 +14,19 @@ public class NForLessMOffer extends Offer{
     public Discount apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
         int chunkSize = (buyAmount + freeAmount);  // N
         int mustPayAmount = (chunkSize - freeAmount); // M
-
         double productQuantity = shoppingCart.getItemQuantity(this.getProduct());
-        double unitPrice = catalog.getUnitPrice(this.getProduct());
         int quantityAsInt = (int) productQuantity;
-        int CompleteChunks = quantityAsInt / chunkSize;
-        double originalPrice = productQuantity * unitPrice;
-        double mustBuyPrice = CompleteChunks * mustPayAmount * unitPrice;
-        double extraPrice = quantityAsInt % chunkSize * unitPrice;
-        double discountAmount = originalPrice - (mustBuyPrice + extraPrice);
-        String description = chunkSize + " for " + mustPayAmount;
-        return new Discount(this.getProduct(), description, -discountAmount);
+        if(quantityAsInt > 2) {
+            double unitPrice = catalog.getUnitPrice(this.getProduct());
+
+            int CompleteChunks = quantityAsInt / chunkSize;
+            double originalPrice = productQuantity * unitPrice;
+            double mustBuyPrice = CompleteChunks * mustPayAmount * unitPrice;
+            double extraPrice = quantityAsInt % chunkSize * unitPrice;
+            double discountAmount = originalPrice - (mustBuyPrice + extraPrice);
+            String description = chunkSize + " for " + mustPayAmount;
+            return new Discount(this.getProduct(), description, -discountAmount);
+        }
+        return null;
     }
 }
