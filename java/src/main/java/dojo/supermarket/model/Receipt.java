@@ -18,6 +18,17 @@ public class Receipt {
         return total;
     }
 
+    public void fillOriginalItems(ShoppingCart theCart, SupermarketCatalog catalog) {
+        List<ProductQuantity> productQuantities = theCart.getItems();
+        for (ProductQuantity pq : productQuantities) {
+            Product p = pq.getProduct();
+            double quantity = pq.getQuantity();
+            double unitPrice = catalog.getUnitPrice(p);
+            double price = quantity * unitPrice;
+            addProduct(p, quantity, unitPrice, price);
+        }
+    }
+
     public void addProduct(Product p, double quantity, double price, double totalPrice) {
         this.items.add(new ReceiptItem(p, quantity, price, totalPrice));
     }

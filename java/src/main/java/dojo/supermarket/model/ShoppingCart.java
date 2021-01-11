@@ -37,7 +37,6 @@ public class ShoppingCart {
         }
     }
 
-
     // Assign: Refactoring
     // TODO: Long method.
     // TODO: Check the discount priorities.
