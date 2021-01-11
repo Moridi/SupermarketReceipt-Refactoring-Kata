@@ -1,9 +1,6 @@
 package dojo.supermarket.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 // @Assign: Zhivar
@@ -27,6 +24,10 @@ public class ShoppingCart {
 
     Map<Product, Double> productQuantities() {
         return productQuantities;
+    }
+
+    public double getItemQuantity(Product product){
+        return productQuantities.get(product);
     }
 
 
@@ -69,6 +70,7 @@ public class ShoppingCart {
                         discount = new Discount(p, "2 for " + offer.argument, -discountN);
                     }
 
+                    //Redundant if
                 } if (offer.offerType == SpecialOfferType.FiveForAmount) {
                     x = 5;
                 }
@@ -86,6 +88,7 @@ public class ShoppingCart {
                     discount = new Discount(p, offer.argument + "% off", -quantity * unitPrice * offer.argument / 100.0);
                 }
                 if (offer.offerType == SpecialOfferType.FiveForAmount && quantityAsInt >= 5) {
+                    // Duplicate Code (TwoForAmount)
                     double discountTotal = unitPrice * quantity - (offer.argument * numberOfXs + quantityAsInt % 5 * unitPrice);
                     discount = new Discount(p, x + " for " + offer.argument, -discountTotal);
                 }
