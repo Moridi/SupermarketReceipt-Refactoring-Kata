@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// @Assign: Zhivar
 public class Teller {
 
     // TODO: Check its usage. In case, make it singleton
@@ -30,6 +29,9 @@ public class Teller {
             double price = quantity * unitPrice;
             receipt.addProduct(p, quantity, unitPrice, price);
         }
+
+//        OfferHandler.applyOffers(theCart, this.catalog);
+
         theCart.handleOffers(receipt, this.offers, this.catalog);
 
         return receipt;

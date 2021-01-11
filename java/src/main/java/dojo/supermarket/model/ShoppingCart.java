@@ -37,10 +37,13 @@ public class ShoppingCart {
         }
     }
 
+
+    // Assign: Refactoring
     // TODO: Long method.
     // TODO: Check the discount priorities.
     // TODO: Encapsulation
 //    void handleOffers(Map<Product, Offer> offers) {
+
     void handleOffers(Receipt receipt, Map<Product, Offer> offers, SupermarketCatalog catalog) {
 
         for (Product p: productQuantities().keySet()) {
