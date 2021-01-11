@@ -16,4 +16,7 @@ public class Offer {
         return this.product;
     }
 
+    public Discount apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
+        return null;
+    }
 }

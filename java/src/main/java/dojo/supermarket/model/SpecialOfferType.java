@@ -5,6 +5,7 @@ public enum SpecialOfferType {
     // @Assign: Zhivar
     //    Buy two toothbrushes, get one free. Normal toothbrush price is €0.99
     ThreeForTwo,
+    //
 
     // @Assign: Mohammad
     //    10% discount on rice, normal price €2.49 per bag
@@ -16,4 +17,7 @@ public enum SpecialOfferType {
     TwoForAmount,
     //    Five tubes of toothpaste for €7.49, normal price €1.79
     FiveForAmount,
+
+    // @Assign: Mohsen
+    // BundleOffer
 }
