@@ -64,11 +64,11 @@ public class ShoppingCart {
 //                    x = 2;
 //                    if (quantityAsInt >= 2) {
 //                        int intDivision = quantityAsInt / x;
-//                        double pricePerUnit = offer.argument * intDivision;
+//                        double pricePerUnit = offer.price * intDivision;
 //                        double theTotal = (quantityAsInt % 2) * unitPrice;
 //                        double total = pricePerUnit + theTotal;
 //                        double discountN = unitPrice * quantity - total;
-//                        discount = new Discount(p, "2 for " + offer.argument, -discountN);
+//                        discount = new Discount(p, "2 for " + offer.price, -discountN);
 //                    }
 //
 //                    //Redundant if
@@ -86,12 +86,12 @@ public class ShoppingCart {
 //                    discount = new Discount(p, "3 for 2", -discountAmount);
 //                }
 //                if (offer.offerType == SpecialOfferType.TenPercentDiscount) {
-//                    discount = new Discount(p, offer.argument + "% off", -quantity * unitPrice * offer.argument / 100.0);
+//                    discount = new Discount(p, offer.price + "% off", -quantity * unitPrice * offer.price / 100.0);
 //                }
 //                if (offer.offerType == SpecialOfferType.FiveForAmount && quantityAsInt >= 5) {
 //                    // Duplicate Code (TwoForAmount)
-//                    double discountTotal = unitPrice * quantity - (offer.argument * numberOfXs + quantityAsInt % 5 * unitPrice);
-//                    discount = new Discount(p, x + " for " + offer.argument, -discountTotal);
+//                    double discountTotal = unitPrice * quantity - (offer.price * numberOfXs + quantityAsInt % 5 * unitPrice);
+//                    discount = new Discount(p, x + " for " + offer.price, -discountTotal);
 //                }
 //                if (discount != null)
 //                    receipt.addDiscount(discount);

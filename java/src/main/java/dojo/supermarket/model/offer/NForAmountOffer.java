@@ -6,11 +6,11 @@ import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
 
 public class NForAmountOffer extends Offer {
-    private int offerChunkSize;
+    private final int offerChunkSize;
 
     public NForAmountOffer(SpecialOfferType offerType, Product product,
-                           double argument, int offerChunkSize) {
-        super(offerType, product, argument);
+                           double price, int offerChunkSize) {
+        super(offerType, product, price);
         this.offerChunkSize = offerChunkSize;
     }
 
@@ -18,10 +18,10 @@ public class NForAmountOffer extends Offer {
         double unitPrice = catalog.getUnitPrice(this.getProduct());
         double originalPrice = unitPrice * productQuantity;
         double extraNoDiscountPrice = quantityAsInt % this.offerChunkSize * unitPrice;
-        double completeChunksDiscountedPrice = this.argument * Math.floor(quantityAsInt / this.offerChunkSize);
+        double completeChunksDiscountedPrice = this.price * Math.floor(quantityAsInt / this.offerChunkSize);
 
         double discountTotal = originalPrice - (completeChunksDiscountedPrice + extraNoDiscountPrice);
-        String description = this.offerChunkSize + " for " + this.argument;
+        String description = this.offerChunkSize + " for " + this.price;
         return new Discount(this.getProduct(), description, -discountTotal);
     }
 

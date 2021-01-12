@@ -9,11 +9,11 @@ public class Offer {
     SpecialOfferType offerType;
     private final Product product;
     // TODO: Encapsulation
-    double argument;
+     double price;
 
-    public Offer(SpecialOfferType offerType, Product product, double argument) {
+    public Offer(SpecialOfferType offerType, Product product, double price) {
         this.offerType = offerType;
-        this.argument = argument;
+        this.price = price;
         this.product = product;
     }
 
