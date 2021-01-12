@@ -34,7 +34,13 @@ public class BundleOfferTest {
         catalog.addProduct(toothbrush, 0.99);
     }
 
-    private void fillCart() {
+    private void fillCartNormal() {
+        theCart.addItem(toothpaste);
+        theCart.addItem(toothbrush);
+    }
+
+    private void fillCartExtended() {
+        theCart.addItem(toothpaste);
         theCart.addItem(toothpaste);
         theCart.addItem(toothbrush);
     }
@@ -50,7 +56,7 @@ public class BundleOfferTest {
     @Test
     public void normalBundleOfferTest() {
         addNormalBundleOffer();
-        this.fillCart();
+        this.fillCartNormal();
         Receipt receipt = teller.checksOutArticlesFrom(theCart);
         Assertions.assertEquals(
                 50.0 / 100.0 * (
@@ -61,9 +67,40 @@ public class BundleOfferTest {
         );
     }
 
-//    @Test
-//    public void extendedBundleOfferTest () {
-//
-//    }
+    @Test
+    public void NonCompleteBundleOfferTest () {
+        addNormalBundleOffer();
+        this.fillCartExtended();
+        Receipt receipt = teller.checksOutArticlesFrom(theCart);
+        Assertions.assertEquals(
+                50.0 / 100.0 * (
+                        catalog.getUnitPrice(toothbrush) +
+                                catalog.getUnitPrice(toothpaste)) +
+                        catalog.getUnitPrice(toothpaste),
+                receipt.getTotalPrice(),
+                1e-2
+        );
+    }
+
+    @Test
+    public void extendedBundleOfferTest() {
+        addExtendedBundleOffer();
+        this.fillCartExtended();
+        Receipt receipt = teller.checksOutArticlesFrom(theCart);
+        Assertions.assertEquals(
+                50.0 / 100.0 * (
+                        catalog.getUnitPrice(toothbrush) +
+                                2 * catalog.getUnitPrice(toothpaste)),
+                receipt.getTotalPrice(),
+                1e-2
+        );
+    }
+
+    private void addExtendedBundleOffer() {
+        Map<Product, Integer> bundleProducts = new HashMap<>();
+        bundleProducts.put(toothbrush, 1);
+        bundleProducts.put(toothpaste, 2);
+        teller.addBundleOffer(bundleProducts, 50.0);
+    }
 
 }
