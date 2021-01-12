@@ -5,4 +5,5 @@ public enum SpecialOfferType {
     TenPercentDiscount,
     TwoForAmount,
     FiveForAmount,
+    BundleDiscount
 }

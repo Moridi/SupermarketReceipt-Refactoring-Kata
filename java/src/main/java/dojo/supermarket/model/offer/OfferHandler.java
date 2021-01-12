@@ -8,6 +8,7 @@ import dojo.supermarket.model.supermarket.SupermarketCatalog;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class OfferHandler {
     List<Offer> offers = new ArrayList<>();
@@ -23,7 +24,7 @@ public class OfferHandler {
         return discounts;
     }
 
-    public void addOffer(SpecialOfferType offerType, Product product, double reductionParameter) {
+    public void addNormalOffer(SpecialOfferType offerType, Product product, double reductionParameter) {
         // TODO: Define these magic values
         if(offerType == SpecialOfferType.FiveForAmount){
             this.offers.add(new NForAmountOffer(offerType, product, reductionParameter, 5));
@@ -35,4 +36,9 @@ public class OfferHandler {
             this.offers.add(new NForLessMOffer(offerType, product,2, 1));
         }
     }
+
+    public void addBundleOffer(Map<Product, Integer> bundlePorducts, double reductionParameter) {
+        this.offers.add(new BundleOffer(SpecialOfferType.BundleDiscount, bundlePorducts, reductionParameter));
+    }
+
 }

@@ -9,11 +9,15 @@ import java.util.Map;
 
 public class BundleOffer extends Offer {
 
-    private final Map<Product, Integer> bundleProdcuts;
+    private final Map<Product, Integer> bundleProducts;
+    private final double reductionParameter;
 
-    public BundleOffer(SpecialOfferType offerType, Map<Product, Integer> bundleProdcuts) {
+    public BundleOffer(SpecialOfferType offerType,
+                       Map<Product, Integer> bundleProducts,
+                       double reductionParameter) {
         super(offerType);
-        this.bundleProdcuts = bundleProdcuts;
+        this.bundleProducts = bundleProducts;
+        this.reductionParameter = reductionParameter;
     }
 
     @Override
