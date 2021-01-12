@@ -8,12 +8,18 @@ import dojo.supermarket.model.supermarket.SupermarketCatalog;
 public class NForAmountOffer extends Offer {
     private final int offerChunkSize;
     private final double price;
+    private final Product product;
 
     public NForAmountOffer(SpecialOfferType offerType, Product product,
                            double price, int offerChunkSize) {
-        super(offerType, product);
+        super(offerType);
+        this.product = product;
         this.price = price;
         this.offerChunkSize = offerChunkSize;
+    }
+
+    public Product getProduct() {
+        return this.product;
     }
 
     private Discount getDiscount(SupermarketCatalog catalog,

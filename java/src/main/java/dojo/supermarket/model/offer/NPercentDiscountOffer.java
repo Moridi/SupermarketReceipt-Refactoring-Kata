@@ -6,13 +6,18 @@ import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
 
 public class NPercentDiscountOffer extends Offer{
-
     private final double discount;
+    private final Product product;
 
     public NPercentDiscountOffer(SpecialOfferType offerType,
                                  Product product, double discount) {
-        super(offerType, product);
+        super(offerType);
+        this.product = product;
         this.discount = discount;
+    }
+
+    public Product getProduct() {
+        return this.product;
     }
 
     public Discount apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
