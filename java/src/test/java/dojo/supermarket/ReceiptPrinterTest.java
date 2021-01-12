@@ -1,6 +1,9 @@
 package dojo.supermarket;
 
 import dojo.supermarket.model.*;
+import dojo.supermarket.model.product.Product;
+import dojo.supermarket.model.product.ProductUnit;
+import dojo.supermarket.model.receipt.Receipt;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 

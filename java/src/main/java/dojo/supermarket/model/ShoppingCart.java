@@ -1,5 +1,9 @@
 package dojo.supermarket.model;
 
+import dojo.supermarket.model.product.Product;
+import dojo.supermarket.model.product.ProductQuantities;
+import dojo.supermarket.model.product.ProductQuantity;
+
 import java.util.*;
 
 

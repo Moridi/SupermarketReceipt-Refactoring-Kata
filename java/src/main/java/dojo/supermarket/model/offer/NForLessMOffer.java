@@ -1,4 +1,7 @@
-package dojo.supermarket.model;
+package dojo.supermarket.model.offer;
+
+import dojo.supermarket.model.*;
+import dojo.supermarket.model.product.Product;
 
 public class NForLessMOffer extends Offer{
     // Buy two toothbrushes, get one free.

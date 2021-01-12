@@ -1,5 +1,8 @@
-package dojo.supermarket.model;
+package dojo.supermarket.model.offer;
 
+
+import dojo.supermarket.model.*;
+import dojo.supermarket.model.product.Product;
 
 import java.util.ArrayList;
 import java.util.List;

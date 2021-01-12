@@ -1,4 +1,4 @@
-package dojo.supermarket.model;
+package dojo.supermarket.model.product;
 
 import java.util.Objects;
 

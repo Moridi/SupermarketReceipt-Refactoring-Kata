@@ -1,4 +1,4 @@
-package dojo.supermarket.model;
+package dojo.supermarket.model.product;
 
 public class ProductQuantity {
     private final Product product;
