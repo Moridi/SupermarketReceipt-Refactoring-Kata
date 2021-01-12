@@ -21,33 +21,25 @@ public class NForLessMOffer extends Offer{
         this.freeAmount = freeAmount;
     }
 
-    public Product getProduct() {
-        return this.product;
-    }
-
     private Discount getDiscount(SupermarketCatalog catalog, double productQuantity, int quantityAsInt) {
-
         int chunkSize = (buyAmount + freeAmount);  // N
         int mustPayAmount = (chunkSize - freeAmount); // M
 
-        double unitPrice = catalog.getUnitPrice(this.getProduct());
+        double unitPrice = catalog.getUnitPrice(this.product);
         int CompleteChunks = quantityAsInt / chunkSize;
         double originalPrice = productQuantity * unitPrice;
         double mustBuyPrice = CompleteChunks * mustPayAmount * unitPrice;
         double extraPrice = quantityAsInt % chunkSize * unitPrice;
         double discountAmount = originalPrice - (mustBuyPrice + extraPrice);
         String description = chunkSize + " for " + mustPayAmount;
-        return new Discount(this.getProduct(), description, -discountAmount);
+        return new Discount(this.product, description, -discountAmount);
     }
 
     public List<Discount> apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
-        // TODO: Check the following code validity in case of
-        //  shoppingCart does not have this.getProduct() in its container
-        //  Use shoppingCart.hasKey(this.getProduct()) for checking purposes.
-        double productQuantity = shoppingCart.getItemQuantity(this.getProduct());
+        double productQuantity = shoppingCart.getItemQuantity(this.product);
         int quantityAsInt = (int) productQuantity;
 
-        if(quantityAsInt > 2)
+        if(quantityAsInt > buyAmount)
             return new ArrayList<Discount>() {{add(getDiscount(catalog, productQuantity, quantityAsInt));}};
         return null;
     }
