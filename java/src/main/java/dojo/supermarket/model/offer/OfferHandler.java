@@ -31,7 +31,7 @@ public class OfferHandler {
         } else if(offerType == SpecialOfferType.TenPercentDiscount){
             this.offers.add(new NPercentDiscountOffer(offerType, product, reductionParameter));
         } else if(offerType == SpecialOfferType.ThreeForTwo){
-            this.offers.add(new NForLessMOffer(offerType, product, reductionParameter, 2, 1));
+            this.offers.add(new NForLessMOffer(offerType, product,2, 1));
         }
     }
 }
