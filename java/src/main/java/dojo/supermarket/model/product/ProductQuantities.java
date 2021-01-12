@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public class ProductQuantities {
-    private final Map<Product, Double> productQuantitiesMap = new HashMap<>();
     private final List<ProductQuantity> productQuantityList = new ArrayList<>();
 
     public List<ProductQuantity> getItems() {
@@ -15,18 +14,24 @@ public class ProductQuantities {
 
     public void add(Product product, double quantity) {
         productQuantityList.add(new ProductQuantity(product, quantity));
-        if (productQuantitiesMap.containsKey(product)) {
-            productQuantitiesMap.put(product, productQuantitiesMap.get(product) + quantity);
-        } else {
-            productQuantitiesMap.put(product, quantity);
-        }
     }
 
     public double getItemQuantities(Product product) {
-        return productQuantitiesMap.get(product);
+        double amount = 0;
+        for (ProductQuantity productQuantity: productQuantityList) {
+            if (productQuantity.getProduct().equals(product)) {
+                amount += productQuantity.getQuantity();
+            }
+        }
+        return amount;
     }
 
     public boolean hasKey(Product product) {
-        return productQuantitiesMap.containsKey(product);
+        for (ProductQuantity productQuantity: productQuantityList) {
+            if (productQuantity.getProduct().equals(product)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

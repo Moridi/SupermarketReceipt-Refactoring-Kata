@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NPercentDiscountOffer extends Offer{
+    public static final double MAX_PERCENTAGES = 100.0;
+    public static final String DISCOUNT_POSTFIX = "% off";
     private final double discount;
     private final Product product;
 
@@ -26,8 +28,8 @@ public class NPercentDiscountOffer extends Offer{
     public List<Discount> apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
         double productQuantity = shoppingCart.getItemQuantity(this.getProduct());
         double unitPrice = catalog.getUnitPrice(this.getProduct());
-        double discountAmount = productQuantity * unitPrice * this.discount / 100.0;
-        String description = this.discount + "% off";
+        double discountAmount = productQuantity * unitPrice * this.discount / MAX_PERCENTAGES;
+        String description = this.discount + DISCOUNT_POSTFIX;
         return new ArrayList<Discount>() {{add(new Discount(getProduct(), description, -discountAmount));}};
 
     }
