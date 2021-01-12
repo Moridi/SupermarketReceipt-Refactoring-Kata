@@ -6,6 +6,7 @@ import dojo.supermarket.model.receipt.Receipt;
 import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
 import dojo.supermarket.model.supermarket.Teller;
+import junit.framework.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,15 +35,15 @@ public class BundleOfferTest {
         catalog.addProduct(toothbrush, 0.99);
     }
 
-    private void fillCartNormal() {
-        theCart.addItem(toothpaste);
-        theCart.addItem(toothbrush);
+    private void addItemToCart(Product product, int number) {
+        for (int i = 0; i < number; i++) {
+            theCart.addItem(product);
+        }
     }
 
-    private void fillCartExtended() {
-        theCart.addItem(toothpaste);
-        theCart.addItem(toothpaste);
-        theCart.addItem(toothbrush);
+    private void fillCart(int numberOfPastes, int numberOfBrushes) {
+        this.addItemToCart(toothpaste, numberOfPastes);
+        this.addItemToCart(toothbrush, numberOfBrushes);
     }
 
     private void addNormalBundleOffer() {
@@ -56,7 +57,7 @@ public class BundleOfferTest {
     @Test
     public void normalBundleOfferTest() {
         addNormalBundleOffer();
-        this.fillCartNormal();
+        this.fillCart(1, 1);
         Receipt receipt = teller.checksOutArticlesFrom(theCart);
         Assertions.assertEquals(
                 50.0 / 100.0 * (
@@ -70,7 +71,7 @@ public class BundleOfferTest {
     @Test
     public void NonCompleteBundleOfferTest () {
         addNormalBundleOffer();
-        this.fillCartExtended();
+        this.fillCart(2, 1);
         Receipt receipt = teller.checksOutArticlesFrom(theCart);
         Assertions.assertEquals(
                 50.0 / 100.0 * (
@@ -85,7 +86,7 @@ public class BundleOfferTest {
     @Test
     public void extendedBundleOfferTest() {
         addExtendedBundleOffer();
-        this.fillCartExtended();
+        this.fillCart(2, 1);
         Receipt receipt = teller.checksOutArticlesFrom(theCart);
         Assertions.assertEquals(
                 50.0 / 100.0 * (
@@ -101,6 +102,30 @@ public class BundleOfferTest {
         bundleProducts.put(toothbrush, 1);
         bundleProducts.put(toothpaste, 2);
         teller.addBundleOffer(bundleProducts, 50.0);
+    }
+
+    @Test
+    public void multipleBundleOfferTest() {
+        this.addMultipleBundleOffers();
+        this.fillCart(4, 4);
+        Receipt receipt = teller.checksOutArticlesFrom(this.theCart);
+        Assertions.assertEquals(
+                40.0 / 100.0 *
+                        (
+                                2 * catalog.getUnitPrice(toothbrush) +
+                                3 * catalog.getUnitPrice(toothpaste)
+                        ) +
+                        2 * catalog.getUnitPrice(toothbrush) + catalog.getUnitPrice(toothpaste),
+                receipt.getTotalPrice(),
+                1e-2
+        );
+    }
+
+    private void addMultipleBundleOffers() {
+        Map<Product, Integer> bundleProducts1 = new HashMap<>();
+        bundleProducts1.put(toothbrush, 2);
+        bundleProducts1.put(toothpaste, 3);
+        teller.addBundleOffer(bundleProducts1, 60.0);
     }
 
 }
