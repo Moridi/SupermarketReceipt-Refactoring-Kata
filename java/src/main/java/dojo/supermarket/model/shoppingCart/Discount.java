@@ -1,4 +1,4 @@
-package dojo.supermarket.model;
+package dojo.supermarket.model.shoppingCart;
 
 import dojo.supermarket.model.product.Product;
 

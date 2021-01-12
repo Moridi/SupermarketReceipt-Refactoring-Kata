@@ -1,5 +1,7 @@
-package dojo.supermarket.model;
+package dojo.supermarket.model.supermarket;
 
+import dojo.supermarket.model.shoppingCart.Discount;
+import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.offer.Offer;
 import dojo.supermarket.model.offer.OfferHandler;
 import dojo.supermarket.model.offer.SpecialOfferType;

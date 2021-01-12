@@ -1,7 +1,9 @@
 package dojo.supermarket.model.offer;
 
-import dojo.supermarket.model.*;
 import dojo.supermarket.model.product.Product;
+import dojo.supermarket.model.shoppingCart.Discount;
+import dojo.supermarket.model.shoppingCart.ShoppingCart;
+import dojo.supermarket.model.supermarket.SupermarketCatalog;
 
 public class NPercentDiscountOffer extends Offer{
     public NPercentDiscountOffer(SpecialOfferType offerType, Product product, double argument) {
