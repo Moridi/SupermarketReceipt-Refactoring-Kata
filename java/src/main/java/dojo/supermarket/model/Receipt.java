@@ -7,7 +7,7 @@ public class Receipt {
     private List<ReceiptItem> items = new ArrayList<>();
     private List<Discount> discounts = new ArrayList<>();
 
-    public Double getTotalPrice() {
+    public double getTotalPrice() {
         double total = 0.0;
         for (ReceiptItem item : this.items) {
             total += item.getTotalPrice();

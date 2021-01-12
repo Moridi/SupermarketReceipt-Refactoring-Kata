@@ -11,7 +11,7 @@ public class ShoppingCart {
 //    private final List<ProductQuantity> items = new ArrayList<>();
     // TODO: Make it primitive type
     // TODO: Move it to a new class
-//    Map<Product, Double> productQuantities = new HashMap<>();
+//    Map<Product, double> productQuantities = new HashMap<>();
     private final ProductQuantities productQuantities = new ProductQuantities();
 
 
@@ -24,7 +24,7 @@ public class ShoppingCart {
     }
 
 //    @Note: unused method
-//    Map<Product, Double> productQuantities() {
+//    Map<Product, double> productQuantities() {
 //        return productQuantities;
 //    }
 
