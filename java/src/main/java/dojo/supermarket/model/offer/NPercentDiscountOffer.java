@@ -6,6 +6,7 @@ import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NPercentDiscountOffer extends Offer{
@@ -30,7 +31,6 @@ public class NPercentDiscountOffer extends Offer{
         double unitPrice = catalog.getUnitPrice(this.getProduct());
         double discountAmount = productQuantity * unitPrice * this.discount / MAX_PERCENTAGES;
         String description = this.discount + DISCOUNT_POSTFIX;
-        return new ArrayList<Discount>() {{add(new Discount(getProduct(), description, -discountAmount));}};
-
+        return Arrays.asList(new Discount(getProduct(), description, -discountAmount));
     }
 }
