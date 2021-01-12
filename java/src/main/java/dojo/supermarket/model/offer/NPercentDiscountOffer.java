@@ -4,14 +4,12 @@ import dojo.supermarket.model.product.Product;
 import dojo.supermarket.model.shoppingCart.Discount;
 import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class NPercentDiscountOffer extends Offer{
-    public static final double MAX_PERCENTAGES = 100.0;
-    public static final String DISCOUNT_POSTFIX = "% off";
+    private static final double MAX_PERCENTAGES = 100.0;
+    private static final String DISCOUNT_POSTFIX = "% off";
     private final double discount;
     private final Product product;
 
