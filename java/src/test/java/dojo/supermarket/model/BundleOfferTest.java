@@ -35,21 +35,35 @@ public class BundleOfferTest {
     }
 
     private void fillCart() {
+        theCart.addItem(toothpaste);
         theCart.addItem(toothbrush);
-        theCart.addItem(toothbrush);
+    }
+
+    private void addNormalBundleOffer() {
+        Map<Product, Integer> bundleProducts = new HashMap<>();
+        bundleProducts.put(toothbrush, 1);
+        bundleProducts.put(toothpaste, 1);
+        teller.addBundleOffer(bundleProducts, 50.0);
     }
 
 
     @Test
     public void normalBundleOfferTest() {
-        Map<Product, Integer> bundleProducts = new HashMap<>();
-        bundleProducts.put(toothbrush, 1);
-        bundleProducts.put(toothpaste, 1);
-        teller.addBundleOffer(bundleProducts, 50.0);
+        addNormalBundleOffer();
         this.fillCart();
         Receipt receipt = teller.checksOutArticlesFrom(theCart);
-        Assertions.assertEquals(receipt.getTotalPrice(),
-                50.0 / 100.0 * (catalog.getUnitPrice(toothbrush) + catalog.getUnitPrice(toothpaste)));
+        Assertions.assertEquals(
+                50.0 / 100.0 * (
+                        catalog.getUnitPrice(toothbrush) +
+                        catalog.getUnitPrice(toothpaste)),
+                receipt.getTotalPrice(),
+                1e-2
+        );
     }
+
+//    @Test
+//    public void extendedBundleOfferTest () {
+//
+//    }
 
 }
