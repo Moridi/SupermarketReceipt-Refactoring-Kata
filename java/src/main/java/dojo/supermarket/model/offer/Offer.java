@@ -4,6 +4,8 @@ import dojo.supermarket.model.shoppingCart.Discount;
 import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
 
+import java.util.List;
+
 public abstract class Offer {
     private SpecialOfferType offerType;
 
@@ -11,5 +13,5 @@ public abstract class Offer {
         this.offerType = offerType;
     }
 
-    public abstract Discount apply(ShoppingCart shoppingCart, SupermarketCatalog catalog);
+    public abstract List<Discount> apply(ShoppingCart shoppingCart, SupermarketCatalog catalog);
 }

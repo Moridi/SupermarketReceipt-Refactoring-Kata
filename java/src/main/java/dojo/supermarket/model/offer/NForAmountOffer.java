@@ -5,6 +5,9 @@ import dojo.supermarket.model.shoppingCart.Discount;
 import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NForAmountOffer extends Offer {
     private final int offerChunkSize;
     private final double price;
@@ -35,11 +38,11 @@ public class NForAmountOffer extends Offer {
         return new Discount(this.getProduct(), description, -discountTotal);
     }
 
-    public Discount apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
+    public List<Discount> apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
         double productQuantity = shoppingCart.getItemQuantity(this.getProduct());
         int quantityAsInt = (int) productQuantity;
         if (quantityAsInt >= offerChunkSize)
-            return getDiscount(catalog, productQuantity, quantityAsInt);
+            return new ArrayList<Discount>() {{add(getDiscount(catalog, productQuantity, quantityAsInt));}};
         return null;
     }
 }

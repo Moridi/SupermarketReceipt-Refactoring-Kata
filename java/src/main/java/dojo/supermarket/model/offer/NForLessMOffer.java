@@ -5,6 +5,9 @@ import dojo.supermarket.model.shoppingCart.Discount;
 import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NForLessMOffer extends Offer{
     // Buy two toothbrushes, get one free.
     private final int buyAmount;  // = 2
@@ -37,7 +40,7 @@ public class NForLessMOffer extends Offer{
         return new Discount(this.getProduct(), description, -discountAmount);
     }
 
-    public Discount apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
+    public List<Discount> apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
         // TODO: Check the following code validity in case of
         //  shoppingCart does not have this.getProduct() in its container
         //  Use shoppingCart.hasKey(this.getProduct()) for checking purposes.
@@ -45,7 +48,7 @@ public class NForLessMOffer extends Offer{
         int quantityAsInt = (int) productQuantity;
 
         if(quantityAsInt > 2)
-            return getDiscount(catalog, productQuantity, quantityAsInt);
+            return new ArrayList<Discount>() {{add(getDiscount(catalog, productQuantity, quantityAsInt));}};
         return null;
     }
 }

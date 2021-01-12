@@ -6,6 +6,7 @@ import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 // TODO: Test this class
@@ -47,7 +48,7 @@ public class BundleOffer extends Offer {
     }
 
     @Override
-    public Discount apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
+    public List<Discount> apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
         Map<Product, Integer> offerableCartProducts = new HashMap<Product, Integer>();
 
         for (Map.Entry<Product, Integer> bundleItem : bundleProducts.entrySet()) {

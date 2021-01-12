@@ -16,9 +16,9 @@ public class OfferHandler {
     public List<Discount> applyOffers(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
         List<Discount> discounts = new ArrayList<>();
         for (Offer offer : offers) {
-            Discount discount = offer.apply(shoppingCart, catalog);
-            if (discount != null) {
-                discounts.add(discount);
+            List<Discount> offerDiscounts = offer.apply(shoppingCart, catalog);
+            if (offerDiscounts != null) {
+                discounts.addAll(offerDiscounts);
             }
         }
         return discounts;
