@@ -16,8 +16,8 @@ public class Teller {
 
     // TODO: Check its usage. In case, make it singleton
     private final SupermarketCatalog catalog;
-    private OfferHandler offerHandler;
-    private Map<Product, Offer> offers = new HashMap<>();
+    private final OfferHandler offerHandler;
+    private final Map<Product, Offer> offers = new HashMap<>();
 
     public Teller(SupermarketCatalog catalog) {
         this.catalog = catalog;
