@@ -16,11 +16,13 @@ public class NForAmountOffer extends Offer {
         this.offerChunkSize = offerChunkSize;
     }
 
-    private Discount getDiscount(SupermarketCatalog catalog, double productQuantity, int quantityAsInt) {
+    private Discount getDiscount(SupermarketCatalog catalog,
+                                 double productQuantity, int quantityAsInt) {
         double unitPrice = catalog.getUnitPrice(this.getProduct());
         double originalPrice = unitPrice * productQuantity;
         double extraNoDiscountPrice = quantityAsInt % this.offerChunkSize * unitPrice;
-        double completeChunksDiscountedPrice = this.price * Math.floor(quantityAsInt / this.offerChunkSize);
+        double completeChunksDiscountedPrice = this.price *
+                Math.floor(quantityAsInt / this.offerChunkSize);
 
         double discountTotal = originalPrice - (completeChunksDiscountedPrice + extraNoDiscountPrice);
         String description = this.offerChunkSize + " for " + this.price;

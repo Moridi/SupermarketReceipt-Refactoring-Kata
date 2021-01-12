@@ -6,16 +6,15 @@ import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
 
 public class Offer {
-    SpecialOfferType offerType;
+    private SpecialOfferType offerType;
     private final Product product;
-    // TODO: Encapsulation
 
     public Offer(SpecialOfferType offerType, Product product) {
         this.offerType = offerType;
         this.product = product;
     }
 
-    Product getProduct() {
+    public Product getProduct() {
         return this.product;
     }
 

@@ -9,7 +9,8 @@ public class NPercentDiscountOffer extends Offer{
 
     private final double discount;
 
-    public NPercentDiscountOffer(SpecialOfferType offerType, Product product, double discount) {
+    public NPercentDiscountOffer(SpecialOfferType offerType,
+                                 Product product, double discount) {
         super(offerType, product);
         this.discount = discount;
     }

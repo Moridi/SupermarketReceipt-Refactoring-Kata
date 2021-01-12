@@ -24,6 +24,7 @@ public class OfferHandler {
     }
 
     public void addOffer(SpecialOfferType offerType, Product product, double reductionParameter) {
+        // TODO: Define these magic values
         if(offerType == SpecialOfferType.FiveForAmount){
             this.offers.add(new NForAmountOffer(offerType, product, reductionParameter, 5));
         } else if(offerType == SpecialOfferType.TwoForAmount){
