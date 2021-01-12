@@ -5,6 +5,7 @@ import dojo.supermarket.model.shoppingCart.Discount;
 import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,24 @@ public class BundleOffer extends Offer {
         return completeBundles;
     }
 
+    private List<Discount> getOfferDiscounts(Map<Product, Integer> offerableCartProducts,
+                                             SupermarketCatalog catalog) {
+        int completeBundles = getCompleteBundles(offerableCartProducts);
+        List<Discount> offerDiscounts = new ArrayList<Discount>();
+
+        for (Map.Entry<Product, Integer> bundleItem : offerableCartProducts.entrySet()) {
+            double unitPrice = catalog.getUnitPrice(bundleItem.getKey());
+
+            int numOfProductInTheCompleteBundles = bundleProducts.get(bundleItem.getKey()) * completeBundles;
+            double discountAmount = numOfProductInTheCompleteBundles * unitPrice * this.discount / 100.0;
+
+            String description = discountAmount + " for a bundle offer";
+            offerDiscounts.add(new Discount(bundleItem.getKey(), description, -discountAmount));
+        }
+
+        return offerDiscounts;
+    }
+
     @Override
     public List<Discount> apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
         Map<Product, Integer> offerableCartProducts = new HashMap<Product, Integer>();
@@ -55,9 +74,6 @@ public class BundleOffer extends Offer {
             if (!bundleItemExists(offerableCartProducts, bundleItem, shoppingCart))
                 return null;
         }
-
-        int completeBundles = getCompleteBundles(offerableCartProducts);
-
-        return null;
+        return getOfferDiscounts(offerableCartProducts, catalog);
     }
 }

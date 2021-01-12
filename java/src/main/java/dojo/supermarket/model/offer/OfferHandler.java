@@ -40,5 +40,4 @@ public class OfferHandler {
     public void addBundleOffer(Map<Product, Integer> bundleProducts, double discount) {
         this.offers.add(new BundleOffer(SpecialOfferType.BundleDiscount, bundleProducts, discount));
     }
-
 }
