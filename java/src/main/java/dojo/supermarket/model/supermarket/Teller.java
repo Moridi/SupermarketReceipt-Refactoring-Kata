@@ -27,8 +27,8 @@ public class Teller {
         offerHandler.addNormalOffer(offerType, product, reductionParameter);
     }
 
-    public void addBundleOffer(Map<Product, Integer> bundlePorducts, double reductionParameter) {
-        offerHandler.addBundleOffer(bundlePorducts, reductionParameter);
+    public void addBundleOffer(Map<Product, Integer> bundleProducts, double reductionParameter) {
+        offerHandler.addBundleOffer(bundleProducts, reductionParameter);
     }
 
     public Receipt checksOutArticlesFrom(ShoppingCart theCart) {
