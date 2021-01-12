@@ -13,50 +13,52 @@ import java.util.Map;
 // TODO: Test this class
 public class BundleOffer extends Offer {
 
-    private final Map<Product, Integer> bundleProducts;
+    private final Bundles bundleProducts;
     private final double discount;
 
     public BundleOffer(SpecialOfferType offerType,
                        Map<Product, Integer> bundleProducts,
                        double discount) {
         super(offerType);
-        this.bundleProducts = bundleProducts;
+        this.bundleProducts = new Bundles(bundleProducts);
         this.discount = discount;
     }
 
-    private boolean bundleItemExists(Map<Product, Integer> offerableCartProducts,
+    private boolean bundleItemExists(Bundles existedBundles,
                                      Map.Entry<Product, Integer> bundleItem,
                                      ShoppingCart shoppingCart) {
         if (shoppingCart.hasProduct(bundleItem.getKey())) {
             int productQuantity = shoppingCart.getIntegerItemQuantity(bundleItem.getKey());
             if (bundleItem.getValue() <= productQuantity) {
-                offerableCartProducts.put(bundleItem.getKey(), productQuantity);
+                existedBundles.addBundle(bundleItem.getKey(), productQuantity);
                 return true;
             }
         }
         return false;
     }
 
-    private int getCompleteBundles(Map<Product, Integer> offerableCartProducts) {
+    private int getCompleteBundles(Bundles existedBundles) {
         int completeBundles = Integer.MAX_VALUE;
 
-        for (Map.Entry<Product, Integer> bundleItem : offerableCartProducts.entrySet()) {
-            int completeBundlesPerItem = bundleItem.getValue() / this.bundleProducts.get(bundleItem.getKey());
+        for (Map.Entry<Product, Integer> bundleItem : existedBundles.getBundleProducts()) {
+            int completeBundlesPerItem = bundleItem.getValue() /
+                    this.bundleProducts.getBundleItemCount(bundleItem.getKey());
             if (completeBundlesPerItem < completeBundles)
                 completeBundles = completeBundlesPerItem;
         }
         return completeBundles;
     }
 
-    private List<Discount> getOfferDiscounts(Map<Product, Integer> offerableCartProducts,
+    private List<Discount> getOfferDiscounts(Bundles existedBundles,
                                              SupermarketCatalog catalog) {
-        int completeBundles = getCompleteBundles(offerableCartProducts);
+        int completeBundles = getCompleteBundles(existedBundles);
         List<Discount> offerDiscounts = new ArrayList<Discount>();
 
-        for (Map.Entry<Product, Integer> bundleItem : offerableCartProducts.entrySet()) {
+        for (Map.Entry<Product, Integer> bundleItem : existedBundles.getBundleProducts()) {
             double unitPrice = catalog.getUnitPrice(bundleItem.getKey());
 
-            int numOfProductInTheCompleteBundles = bundleProducts.get(bundleItem.getKey()) * completeBundles;
+            int numOfProductInTheCompleteBundles =
+                    this.bundleProducts.getBundleItemCount(bundleItem.getKey()) * completeBundles;
             double discountAmount = numOfProductInTheCompleteBundles * unitPrice * this.discount / 100.0;
 
             String description = discountAmount + " for a bundle offer";
@@ -68,12 +70,15 @@ public class BundleOffer extends Offer {
 
     @Override
     public List<Discount> apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
-        Map<Product, Integer> offerableCartProducts = new HashMap<Product, Integer>();
+        Bundles existedBundles = new Bundles();
 
-        for (Map.Entry<Product, Integer> bundleItem : bundleProducts.entrySet()) {
-            if (!bundleItemExists(offerableCartProducts, bundleItem, shoppingCart))
+        for (Map.Entry<Product, Integer> bundleItem : this.bundleProducts.getBundleProducts()) {
+            if (!bundleItemExists(existedBundles, bundleItem, shoppingCart))
                 return null;
+
+            int productQuantity = shoppingCart.getIntegerItemQuantity(bundleItem.getKey());
+            existedBundles.addBundle(bundleItem.getKey(), productQuantity);
         }
-        return getOfferDiscounts(offerableCartProducts, catalog);
+        return getOfferDiscounts(existedBundles, catalog);
     }
 }
