@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class ProductQuantities {
     private final Map<Product, Double> productQuantitiesMap = new HashMap<>();
-    private final List<ProductQuantity>  productQuantityList = new ArrayList<>();
+    private final List<ProductQuantity> productQuantityList = new ArrayList<>();
 
     public List<ProductQuantity> getItems() {
         return productQuantityList;
@@ -24,5 +24,9 @@ public class ProductQuantities {
 
     public double getItemQuantities(Product product) {
         return productQuantitiesMap.get(product);
+    }
+
+    public boolean hasKey(Product product) {
+        return productQuantitiesMap.containsKey(product);
     }
 }

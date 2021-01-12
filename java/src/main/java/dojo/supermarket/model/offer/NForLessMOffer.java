@@ -38,6 +38,9 @@ public class NForLessMOffer extends Offer{
     }
 
     public Discount apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
+        // TODO: Check the following code validity in case of
+        //  shoppingCart does not have this.getProduct() in its container
+        //  Use shoppingCart.hasKey(this.getProduct()) for checking purposes.
         double productQuantity = shoppingCart.getItemQuantity(this.getProduct());
         int quantityAsInt = (int) productQuantity;
 

@@ -37,8 +37,8 @@ public class OfferHandler {
         }
     }
 
-    public void addBundleOffer(Map<Product, Integer> bundlePorducts, double reductionParameter) {
-        this.offers.add(new BundleOffer(SpecialOfferType.BundleDiscount, bundlePorducts, reductionParameter));
+    public void addBundleOffer(Map<Product, Integer> bundleProducts, double discount) {
+        this.offers.add(new BundleOffer(SpecialOfferType.BundleDiscount, bundleProducts, discount));
     }
 
 }
