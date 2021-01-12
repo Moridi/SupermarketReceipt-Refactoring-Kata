@@ -22,15 +22,11 @@ public class NPercentDiscountOffer extends Offer{
         this.discount = discount;
     }
 
-    public Product getProduct() {
-        return this.product;
-    }
-
     public List<Discount> apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
-        double productQuantity = shoppingCart.getItemQuantity(this.getProduct());
-        double unitPrice = catalog.getUnitPrice(this.getProduct());
+        double productQuantity = shoppingCart.getItemQuantity(this.product);
+        double unitPrice = catalog.getUnitPrice(this.product);
         double discountAmount = productQuantity * unitPrice * this.discount / MAX_PERCENTAGES;
         String description = this.discount + DISCOUNT_POSTFIX;
-        return Arrays.asList(new Discount(getProduct(), description, -discountAmount));
+        return Arrays.asList(new Discount(this.product, description, -discountAmount));
     }
 }
