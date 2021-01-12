@@ -23,15 +23,15 @@ public class OfferHandler {
         return discounts;
     }
 
-    public void addOffer(SpecialOfferType offerType, Product product, double price) {
+    public void addOffer(SpecialOfferType offerType, Product product, double reductionParameter) {
         if(offerType == SpecialOfferType.FiveForAmount){
-            this.offers.add(new NForAmountOffer(offerType, product, price, 5));
+            this.offers.add(new NForAmountOffer(offerType, product, reductionParameter, 5));
         } else if(offerType == SpecialOfferType.TwoForAmount){
-            this.offers.add(new NForAmountOffer(offerType, product, price, 2));
+            this.offers.add(new NForAmountOffer(offerType, product, reductionParameter, 2));
         } else if(offerType == SpecialOfferType.TenPercentDiscount){
-            this.offers.add(new NPercentDiscountOffer(offerType, product, price));
+            this.offers.add(new NPercentDiscountOffer(offerType, product, reductionParameter));
         } else if(offerType == SpecialOfferType.ThreeForTwo){
-            this.offers.add(new NForLessMOffer(offerType, product, price, 2, 1));
+            this.offers.add(new NForLessMOffer(offerType, product, reductionParameter, 2, 1));
         }
     }
 }
