@@ -1,13 +1,11 @@
 package dojo.supermarket.model;
 
-import dojo.supermarket.model.offer.SpecialOfferType;
 import dojo.supermarket.model.product.Product;
 import dojo.supermarket.model.product.ProductUnit;
 import dojo.supermarket.model.receipt.Receipt;
 import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
 import dojo.supermarket.model.supermarket.Teller;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,9 +19,6 @@ public class BundleOfferTest {
     private Teller teller;
     private ShoppingCart theCart;
     private Product toothbrush;
-    private Product rice;
-    private Product apples;
-    private Product cherryTomatoes;
     private Product toothpaste;
 
 
@@ -37,12 +32,6 @@ public class BundleOfferTest {
         catalog.addProduct(toothpaste, 0.99);
         toothbrush = new Product("toothbrush", ProductUnit.Each);
         catalog.addProduct(toothbrush, 0.99);
-        rice = new Product("rice", ProductUnit.Each);
-        catalog.addProduct(rice, 2.99);
-        apples = new Product("apples", ProductUnit.Kilo);
-        catalog.addProduct(apples, 1.99);
-        cherryTomatoes = new Product("cherry tomato box", ProductUnit.Each);
-        catalog.addProduct(cherryTomatoes, 0.69);
     }
 
     private void fillCart() {
