@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class OfferHandler {
-    List<Offer> offers = new ArrayList<>();
+    private List<Offer> offers = new ArrayList<>();
 
     public List<Discount> applyOffers(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
         List<Discount> discounts = new ArrayList<>();
