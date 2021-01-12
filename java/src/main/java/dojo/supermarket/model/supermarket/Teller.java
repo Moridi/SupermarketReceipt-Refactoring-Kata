@@ -36,10 +36,8 @@ public class Teller {
         receipt.fillOriginalItems(theCart, this.catalog);
 
         List<Discount> discounts = offerHandler.applyOffers(theCart, this.catalog);
-        for(Discount discount: discounts){
-            if (discount != null)
-                receipt.addDiscount(discount);
-        }
+        receipt.fillDiscountItems(discounts);
+
         return receipt;
     }
 }

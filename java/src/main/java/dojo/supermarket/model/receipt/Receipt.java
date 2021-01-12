@@ -35,6 +35,13 @@ public class Receipt {
         }
     }
 
+    public void fillDiscountItems(List<Discount> discounts){
+        for(Discount discount: discounts){
+            if (discount != null)
+                this.addDiscount(discount);
+        }
+    }
+
     public void addProduct(Product p, double quantity, double price, double totalPrice) {
         this.items.add(new ReceiptItem(p, quantity, price, totalPrice));
     }
