@@ -6,6 +6,7 @@ import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NForAmountOffer extends Offer {
@@ -21,13 +22,9 @@ public class NForAmountOffer extends Offer {
         this.offerChunkSize = offerChunkSize;
     }
 
-    public Product getProduct() {
-        return this.product;
-    }
-
     private Discount getDiscount(SupermarketCatalog catalog,
                                  double productQuantity, int quantityAsInt) {
-        double unitPrice = catalog.getUnitPrice(this.getProduct());
+        double unitPrice = catalog.getUnitPrice(this.product);
         double originalPrice = unitPrice * productQuantity;
         double extraNoDiscountPrice = quantityAsInt % this.offerChunkSize * unitPrice;
         double completeChunksDiscountedPrice = this.price *
@@ -35,14 +32,14 @@ public class NForAmountOffer extends Offer {
 
         double discountTotal = originalPrice - (completeChunksDiscountedPrice + extraNoDiscountPrice);
         String description = this.offerChunkSize + " for " + this.price;
-        return new Discount(this.getProduct(), description, -discountTotal);
+        return new Discount(this.product, description, -discountTotal);
     }
 
     public List<Discount> apply(ShoppingCart shoppingCart, SupermarketCatalog catalog) {
-        double productQuantity = shoppingCart.getItemQuantity(this.getProduct());
+        double productQuantity = shoppingCart.getItemQuantity(this.product);
         int quantityAsInt = (int) productQuantity;
         if (quantityAsInt >= offerChunkSize)
-            return new ArrayList<Discount>() {{add(getDiscount(catalog, productQuantity, quantityAsInt));}};
+            return Arrays.asList(getDiscount(catalog, productQuantity, quantityAsInt));
         return null;
     }
 }

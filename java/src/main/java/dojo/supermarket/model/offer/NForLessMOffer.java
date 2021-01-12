@@ -5,7 +5,9 @@ import dojo.supermarket.model.shoppingCart.Discount;
 import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NForLessMOffer extends Offer{
@@ -40,7 +42,7 @@ public class NForLessMOffer extends Offer{
         int quantityAsInt = (int) productQuantity;
 
         if(quantityAsInt > buyAmount)
-            return new ArrayList<Discount>() {{add(getDiscount(catalog, productQuantity, quantityAsInt));}};
+            return Arrays.asList(getDiscount(catalog, productQuantity, quantityAsInt));
         return null;
     }
 }
