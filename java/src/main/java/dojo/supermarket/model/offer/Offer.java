@@ -9,11 +9,9 @@ public class Offer {
     SpecialOfferType offerType;
     private final Product product;
     // TODO: Encapsulation
-     double price;
 
-    public Offer(SpecialOfferType offerType, Product product, double price) {
+    public Offer(SpecialOfferType offerType, Product product) {
         this.offerType = offerType;
-        this.price = price;
         this.product = product;
     }
 

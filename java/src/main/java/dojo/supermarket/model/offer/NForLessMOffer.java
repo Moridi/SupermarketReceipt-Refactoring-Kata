@@ -9,10 +9,13 @@ public class NForLessMOffer extends Offer{
     // Buy two toothbrushes, get one free.
     private final int buyAmount;  // = 2
     private final int freeAmount;  // = 1
+    private final double price;
+
 
     public NForLessMOffer(SpecialOfferType offerType, Product product,
                           double price, int buyAmount, int freeAmount) {
-        super(offerType, product, price);
+        super(offerType, product);
+        this.price = price;
         this.buyAmount = buyAmount;
         this.freeAmount = freeAmount;
     }

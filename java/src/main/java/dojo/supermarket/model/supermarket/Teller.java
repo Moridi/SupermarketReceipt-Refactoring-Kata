@@ -25,9 +25,9 @@ public class Teller {
     }
 
     // TODO: Move the offer creation to OfferHandler
-    public void addSpecialOffer(SpecialOfferType offerType, Product product, double price) {
+    public void addSpecialOffer(SpecialOfferType offerType, Product product, double reductionParameter) {
 //        this.offers.put(product, new Offer(offerType, product, price));
-        offerHandler.addOffer(offerType, product, price);
+        offerHandler.addOffer(offerType, product, reductionParameter);
     }
 
     // TODO: Feature envy.
