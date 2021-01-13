@@ -6,7 +6,6 @@ import dojo.supermarket.model.receipt.Receipt;
 import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
 import dojo.supermarket.model.supermarket.Teller;
-import junit.framework.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

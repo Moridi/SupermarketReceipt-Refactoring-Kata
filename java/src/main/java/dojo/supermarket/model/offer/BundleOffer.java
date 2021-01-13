@@ -6,11 +6,9 @@ import dojo.supermarket.model.shoppingCart.ShoppingCart;
 import dojo.supermarket.model.supermarket.SupermarketCatalog;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// TODO: Test this class
 public class BundleOffer extends Offer {
 
     private final Bundles bundleProducts;
@@ -24,13 +22,11 @@ public class BundleOffer extends Offer {
         this.discount = discount;
     }
 
-    private boolean bundleItemExists(Bundles existedBundles,
-                                     Map.Entry<Product, Integer> bundleItem,
+    private boolean bundleItemExists(Map.Entry<Product, Integer> bundleItem,
                                      ShoppingCart shoppingCart) {
         if (shoppingCart.hasProduct(bundleItem.getKey())) {
             int productQuantity = shoppingCart.getIntegerItemQuantity(bundleItem.getKey());
             if (bundleItem.getValue() <= productQuantity) {
-                existedBundles.addBundle(bundleItem.getKey(), productQuantity);
                 return true;
             }
         }
@@ -73,7 +69,7 @@ public class BundleOffer extends Offer {
         Bundles existedBundles = new Bundles();
 
         for (Map.Entry<Product, Integer> bundleItem : this.bundleProducts.getBundleProducts()) {
-            if (!bundleItemExists(existedBundles, bundleItem, shoppingCart))
+            if (!bundleItemExists(bundleItem, shoppingCart))
                 return null;
 
             int productQuantity = shoppingCart.getIntegerItemQuantity(bundleItem.getKey());

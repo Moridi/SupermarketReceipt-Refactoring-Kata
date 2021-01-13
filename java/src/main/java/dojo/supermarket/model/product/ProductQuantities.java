@@ -1,9 +1,7 @@
 package dojo.supermarket.model.product;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ProductQuantities {
     private final List<ProductQuantity> productQuantityList = new ArrayList<>();

@@ -21,7 +21,6 @@ public class ShoppingCart {
         return productQuantities.getItemQuantities(product);
     }
 
-    // TODO: Make the value integer in the first place and remove the following method.
     public int getIntegerItemQuantity(Product product) {
         return (int) productQuantities.getItemQuantities(product);
     }
